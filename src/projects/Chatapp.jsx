@@ -20,31 +20,53 @@ function Chatapp() {
       ];
     
       const [currentIndex, setCurrentIndex] = useState(0);
+      const [imageLoading, setImageLoading] = useState(true);
     
       const prevSlide = () => {
         const isFirstSlide = currentIndex === 0;
         const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
+        setImageLoading(true);
       };
     
       const nextSlide = () => {
         const isLastSlide = currentIndex === slides.length - 1;
         const newIndex = isLastSlide ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
+        setImageLoading(true);
       };
     
       const goToSlide = (slideIndex) => {
         setCurrentIndex(slideIndex);
+        setImageLoading(true);
+      };
+
+      const handleImageLoad = () => {
+        setImageLoading(false);
       };
   return (
     <div name='chatapp' className='w-full h-[1350px] background'>
         {/* Container */}
         
         <div className='max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 group'>
-      <div
-        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-        className='w-full h-full rounded-xl mt-10 bg-center bg-cover duration-500'
-      ></div>
+      <div className='relative w-full h-full'>
+        {imageLoading && (
+          <div className='absolute inset-0 flex items-center justify-center bg-gray-200 rounded-xl mt-10'>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-pink-600'></div>
+          </div>
+        )}
+        <div
+          style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+          className='w-full h-full rounded-xl mt-10 bg-center bg-cover duration-500'
+        >
+          <img 
+            src={slides[currentIndex].url} 
+            alt={`Chat app screenshot ${currentIndex + 1}`}
+            className='w-full h-full object-cover rounded-xl opacity-0'
+            onLoad={handleImageLoad}
+          />
+        </div>
+      </div>
       {/* Left Arrow */}
       <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
         <BsChevronCompactLeft onClick={prevSlide} size={30} />

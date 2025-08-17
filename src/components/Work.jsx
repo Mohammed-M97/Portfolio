@@ -1,4 +1,3 @@
-import React from 'react';
 import { data } from "../data/data.js";
 
 
@@ -28,6 +27,9 @@ const Work = () => {
     style={{ backgroundImage: `url(${item.image})` }}
     className="shadow-lg shadow-[#040c16] group container rounded-md 
               flex justify-center text-center items-center mx-auto content-div "
+    role="button"
+    tabIndex="0"
+    aria-label={`View ${item.name} project details`}
   >
     {/* Hover effect for images */}
     <div className="opacity-0 group-hover:opacity-100 ">
@@ -36,7 +38,7 @@ const Work = () => {
       </span>
       <div className="pt-8 text-center ">
         {/* eslint-disable-next-line */}
-        <a href={item.view}>
+        <a href={item.view} aria-label={`View ${item.name} project`}>
           <button
             className="text-center rounded-lg px-4 py-3 m-2
                        bg-white text-gray-700 font-bold text-lg"

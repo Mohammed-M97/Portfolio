@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Mohammed Alawlaqi",
+  "name": "Mohammed Alawlaqi - Full Stack Developer Portfolio",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0a192f",
+  "background_color": "#0a192f",
+  "description": "Full Stack Developer Portfolio showcasing React, PHP, and modern web development projects"
 }

@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import {FaBars, FaTimes, FaGithub, FaLinkedin} from 'react-icons/fa'
 import {BsFillPersonLinesFill} from 'react-icons/bs'
 import {HiOutlineMail} from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 
 
 function Navbar() {
     
 
-    const [isDark, setIsDark] = useState(true);
+    const [isDark] = useState(true);
 
     useEffect(() => {
         if (!isDark) {
@@ -25,37 +26,28 @@ function Navbar() {
   return (
     <div className='fixed w-full h-[80px] flex justify-between items-center px-4 background textmain'>
             <div>
-                <a href="/">
-                <img className='sizeImg img' />
-                </a>
+                <Link to="/">
+                <img className='sizeImg img' alt="Mohammed Alawlaqi Portfolio Logo" />
+                </Link>
             </div>
 
         {/* menu */}
         <div>
             <ul className='hidden md:flex'>
                 <li>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
                 </li>
                 <li>
-                <a href="/About">About</a>
+                <Link to="/about">About</Link>
                 </li>
                 <li>
-                <a href="/Skills">Skills</a>
+                <Link to="/skills">Skills</Link>
                 </li>
                 <li>
-                <a href="/Work">Work</a>
+                <Link to="/work">Work</Link>
                 </li>
                 <li>
-                <a href="/Contact">Contact</a>
-                </li>
-                <li>
-                    {/* <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                        <input checked={isDark} onClick={({target}) => setIsDark(target.checked)} type="checkbox" value="" class="sr-only peer"/>
-                        <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#0a192f]"></div>
-                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
-                    </label> */}
-                    
-                    
+                <Link to="/contact">Contact</Link>
                 </li>
             </ul>
         </div>
@@ -73,34 +65,27 @@ function Navbar() {
         }
         >
             <li className='py-6 text-4xl'>
-            <a onClick={handleClick} href="/">Home</a>
+            <Link onClick={handleClick} to="/">Home</Link>
             </li>
             <li className='py-6 text-4xl'>
             {' '}
-            <a onClick={handleClick} href="/About">About</a>
+            <Link onClick={handleClick} to="/about">About</Link>
             </li>
             <li className='py-6 text-4xl'>
             {' '}
-            <a onClick={handleClick} href="/Skills">Skills</a>
+            <Link onClick={handleClick} to="/skills">Skills</Link>
             </li>
             <li className='py-6 text-4xl'>
             {' '}
-            <a onClick={handleClick} href="/Work">Work</a>
+            <Link onClick={handleClick} to="/work">Work</Link>
             </li>
             <li className='py-6 text-4xl'>
             {' '}
-            <a onClick={handleClick} href="/Media">Media</a>
+            <Link onClick={handleClick} to="/media">Media</Link>
             </li>
             <li className='py-6 text-4xl'>
             {' '}
-            <a onClick={handleClick} href="/Contact">Contact</a>
-            </li>
-            <li>
-                    {/* <label class="relative inline-flex items-center mr-5 cursor-pointer mobileToggle">
-                        <input checked={isDark} onClick={({target}) => setIsDark(target.checked)} type="checkbox" value="" class="sr-only peer"/>
-                        <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#0a192f]"></div>
-                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
-                    </label> */}
+            <Link onClick={handleClick} to="/contact">Contact</Link>
             </li>
       </ul>
 

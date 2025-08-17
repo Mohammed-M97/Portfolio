@@ -2,6 +2,8 @@ import Spark01 from '../assets/projects/Spark01.jpg'
 import ServiceApp002 from '../assets/projects/ServiceApp002.jpg'
 import ChatApp4 from '../assets/projects/PicsOfProject/ChatApp4.jpg'
 
+import Toyzer01 from '../assets/projects/websitePage1.png'
+
 export const data=[
     {
         id:1,
@@ -21,6 +23,12 @@ export const data=[
         image:ChatApp4,
         view:"Work/projects/Chatapp",
     },
+    {
+        id:4,
+        name:"Toyzer",
+        image:Toyzer01,
+        view:"Work/projects/Toyzer",
+    }
 
 
 ]

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Spark01 from '../assets/projects/PicsOfProject/Spark01.jpg'
 import Spark3 from '../assets/projects/PicsOfProject/Spark3.jpg'
 import Spark4 from '../assets/projects/PicsOfProject/Spark4.jpg'
@@ -22,45 +22,86 @@ function Spark() {
       ];
     
       const [currentIndex, setCurrentIndex] = useState(0);
+      const [imageLoading, setImageLoading] = useState(true);
     
       const prevSlide = () => {
         const isFirstSlide = currentIndex === 0;
         const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
+        setImageLoading(true);
       };
     
       const nextSlide = () => {
         const isLastSlide = currentIndex === slides.length - 1;
         const newIndex = isLastSlide ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
+        setImageLoading(true);
       };
     
       const goToSlide = (slideIndex) => {
         setCurrentIndex(slideIndex);
+        setImageLoading(true);
+      };
+
+      const handleImageLoad = () => {
+        setImageLoading(false);
       };
   return (
     <div name='Spark' className='w-full h-[1350px] background'>
         {/* Container */}
         
         <div className='max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 group'>
-      <div
-        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-        className='w-full h-full rounded-2xl mt-10 bg-center bg-cover duration-500'
-      ></div>
+      <div className='relative w-full h-full'>
+        {imageLoading && (
+          <div className='absolute inset-0 flex items-center justify-center bg-gray-200 rounded-2xl mt-10'>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-pink-600'></div>
+          </div>
+        )}
+        <div
+          style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+          className='w-full h-full rounded-2xl mt-10 bg-center bg-cover duration-500'
+        >
+          <img 
+            src={slides[currentIndex].url} 
+            alt={`Spark project screenshot ${currentIndex + 1}`}
+            className='w-full h-full object-cover rounded-2xl opacity-0'
+            onLoad={handleImageLoad}
+          />
+        </div>
+      </div>
       {/* Left Arrow */}
-      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
-        <BsChevronCompactLeft onClick={prevSlide} size={30} />
+      <div 
+        className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'
+        onClick={prevSlide}
+        onKeyDown={(e) => e.key === 'Enter' && prevSlide()}
+        tabIndex="0"
+        role="button"
+        aria-label="Previous image"
+      >
+        <BsChevronCompactLeft size={30} />
       </div>
       {/* Right Arrow */}
-      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
-        <BsChevronCompactRight onClick={nextSlide} size={30} />
+      <div 
+        className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'
+        onClick={nextSlide}
+        onKeyDown={(e) => e.key === 'Enter' && nextSlide()}
+        tabIndex="0"
+        role="button"
+        aria-label="Next image"
+      >
+        <BsChevronCompactRight size={30} />
       </div>
-      <div className='flex top-4 justify-center py-2'>
+      <div className='flex top-4 justify-center py-2' role="tablist" aria-label="Image carousel navigation">
         {slides.map((slide, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
+            onKeyDown={(e) => e.key === 'Enter' && goToSlide(slideIndex)}
             className='text-2xl cursor-pointer'
+            tabIndex="0"
+            role="tab"
+            aria-selected={slideIndex === currentIndex}
+            aria-label={`Go to slide ${slideIndex + 1}`}
           >
             <RxDotFilled />
           </div>
@@ -71,7 +112,6 @@ function Spark() {
           <p className='nameText mx-auto font-bold border-b-4 mt-8 border-pink-600 ml-1'>
               Spark
           </p>
-          {/* <h1 className='text-4xl sm:text-7xl font-bold textmain'>Spark is an social media</h1> */}
           <h2 className='text-4xl sm:text-6xl font-bold textcolor'>Spark is an social media</h2>
           <p className='textcolor text-1xl sm:text-2xl py-4 max-w-[700px]'>
               Spark is a photo sharing social networking Platforms. The app allows users to upload posts. Users can browse other users, view trending content,

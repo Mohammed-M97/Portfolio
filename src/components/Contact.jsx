@@ -2,11 +2,18 @@ import React from 'react'
 import {useRef} from 'react';
 
 const Contact = () => {
-  const ref = useRef(null);
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const messageRef = useRef(null);
 
-  const handleClick = () => {
-    // 👇️ reset input field's value
-    ref.current.value = '';
+  const handleSubmit = (e) => {
+    // Form will submit normally to getform.io
+    // Reset form fields after a short delay to allow submission
+    setTimeout(() => {
+      if (nameRef.current) nameRef.current.value = '';
+      if (emailRef.current) emailRef.current.value = '';
+      if (messageRef.current) messageRef.current.value = '';
+    }, 100);
   };
   return (
     <div className='background'>
@@ -17,10 +24,10 @@ const Contact = () => {
                     <p className='textmain py-4'>// Submit the form below or shoot me an email -</p>
                     <p className='textmain'>Mohammed-Alawlaqi@outlook.com</p>
                 </div>
-                <input ref={ref} className='bg-[#ccd6f6] contactColor p-2' type="text" placeholder='Name' name='name' />
-                <input ref={ref} className='my-4 p-2 bg-[#ccd6f6] contactColor' type="email" placeholder='Email' name='email' />
-                <textarea ref={ref} className='bg-[#ccd6f6] contactColor p-2' name="message" rows="10" placeholder='Message'></textarea>
-                <button onClick={handleClick} className=' border-2 buttonBg px-4 py-3 my-8 mx-auto flex items-center'>Let's Collaborate</button>
+                <input ref={nameRef} className='bg-[#ccd6f6] contactColor p-2' type="text" placeholder='Name' name='name' required />
+                <input ref={emailRef} className='my-4 p-2 bg-[#ccd6f6] contactColor' type="email" placeholder='Email' name='email' required />
+                <textarea ref={messageRef} className='bg-[#ccd6f6] contactColor p-2' name="message" rows="10" placeholder='Message' required></textarea>
+                <button onClick={handleSubmit} type="submit" className=' border-2 buttonBg px-4 py-3 my-8 mx-auto flex items-center'>Let's Collaborate</button>
             </form>
             
             
