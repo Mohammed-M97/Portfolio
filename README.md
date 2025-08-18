@@ -9,13 +9,13 @@
 
 ## 🌟 Live Demo
 
-🔗 **[View Live Portfolio](https://mohammed-alawlaqi-portfolio.netlify.app)** *(Replace with your actual deployment URL)*
+🔗 **[View Live Portfolio](https://mohammed-alawlaqi.com/)**
 
 ## 📸 Screenshots
 
-![Portfolio Home](./screenshots/home.png)
-![Projects Gallery](./screenshots/projects.png)
-![About Section](./screenshots/about.png)
+![Portfolio Home](./docs/portfolio01.png)
+![Projects Gallery](./docs/portfolio03.png)
+![About Section](./docs/portfolio02.png)
 
 ## ✨ Features
 

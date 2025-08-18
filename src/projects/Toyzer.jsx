@@ -5,7 +5,8 @@ import websitePage5 from '../assets/projects/websitePage5.png';
 import websitePage6 from '../assets/projects/websitePage6.png';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
-import { SiJavascript, SiBootstrap, SiHtml5 } from 'react-icons/si'
+import { SiMongodb, SiTailwindcss } from 'react-icons/si'
+import { FaNodeJs, FaReact } from "react-icons/fa";
 
 function Toyzer() {
     const slides = [
@@ -106,29 +107,32 @@ function Toyzer() {
                 <p className='nameText mx-auto font-bold border-b-4 mt-8 border-pink-600 ml-1'>
                     Toyzer
                 </p>
-                <h2 className='text-4xl sm:text-6xl font-bold textcolor'>Toyzer is an e-commerce platform</h2>
+                <h2 className='text-4xl sm:text-6xl font-bold textcolor'>Toyzer is an e-commerce website</h2>
                 <p className='textcolor text-1xl sm:text-2xl py-4 max-w-[700px]'>
-                    Toyzer is an e-commerce platform that allows users to buy and sell toys. The app features a user-friendly interface, secure payment options, and a wide variety of products.
+                    Toyzer Store is an e-commerce website specializing in toys and related products. It provides a platform for users to browse, purchase, and manage their favorite toys. The website is built using React for the frontend and Node.js with Express for the backend, with a MongoDB database.
                 </p>
                 <h3 className='nameText font-bold mb-4'>
                     Tools :
                     <span className='mx-4' style={{ display: 'inline-flex' }}>
-                        <SiHtml5 size={'30px'} />
+                        <FaReact size={'30px'} />
                     </span>
                     <span className='mx-4' style={{ display: 'inline-flex' }}>
-                        <SiBootstrap size={'35px'} />
+                        <SiTailwindcss size={'35px'} />
                     </span>
                     <span className='mx-4' style={{ display: 'inline-flex' }}>
-                        <SiJavascript size={'30px'} />
+                        <FaNodeJs size={'30px'} />
+                    </span>
+                    <span className='mx-4' style={{ display: 'inline-flex' }}>
+                        <SiMongodb size={'30px'} />
                     </span>
                 </h3>
                 <div>
-                    <a href="https://spark-soical-media.netlify.app/" target="__blank">
+                    <a href="https://toyzer-store.onrender.com/" target="__blank">
                         <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg '>
                             View Work
                         </button>
                     </a>
-                    <a href="https://github.com/Mohammed-M97/Spark-soical-media-app" target="__blank">
+                    <a href="https://github.com/Mohammed-M97/toyzer-store/tree/main?tab=readme-ov-file" target="__blank">
                         <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg '>
                             View Code
                         </button>
