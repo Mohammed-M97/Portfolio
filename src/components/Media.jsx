@@ -27,7 +27,7 @@ function Media() {
               </button>
             </a>
           
-            <a className='px-12' target="__blank" href="https://drive.google.com/file/d/1LvQFA5MtJ7T8hCzufo1z5tF0XHFH3qq6/view?usp=sharing">
+            <a className='px-12' target="__blank" href="https://drive.google.com/file/d/1PtpVU32hROqPcDeYiTwICbvZbUtHO6Im/view?usp=sharing">
               <button className='text-white m-4 mt-10 group border-2 px-[65px] py-8 my-2 flex items-center hover:bg-[#565f69] hover:border-[#565f69]'>
                   Resume <span className='ml-5'><BsFillPersonLinesFill size={'30px'} /></span>
               </button>

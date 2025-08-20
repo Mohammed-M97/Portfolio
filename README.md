@@ -174,7 +174,7 @@ The color scheme is defined in `src/index.css`:
 - 📧 Email: [Mohammed-Alawlaqi@outlook.com](mailto:Mohammed-Alawlaqi@outlook.com)
 - 💼 LinkedIn: [mohammed-alawlaqi](https://www.linkedin.com/in/mohammed-alawlaqi/)
 - 🐱 GitHub: [Mohammed-M97](https://github.com/Mohammed-M97)
-- 📄 Resume: [View Resume](https://drive.google.com/file/d/1LvQFA5MtJ7T8hCzufo1z5tF0XHFH3qq6/view?usp=sharing)
+- 📄 Resume: [View Resume](https://drive.google.com/file/d/1PtpVU32hROqPcDeYiTwICbvZbUtHO6Im/view?usp=sharing)
 
 ## 📄 License
 
