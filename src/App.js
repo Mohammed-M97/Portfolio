@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -14,6 +14,8 @@ const Spark = lazy(() => import("./projects/Spark"));
 const ServicesApp = lazy(() => import("./projects/ServicesApp"));
 const Chatapp = lazy(() => import("./projects/Chatapp"));
 const Toyzer = lazy(() => import("./projects/Toyzer"));
+const Omar = lazy(() => import("./projects/Omar"));
+const AdminDashboard = lazy(() => import("./projects/AdminDashboard"));
 
 // Loading component
 const LoadingSpinner = () => (
@@ -42,6 +44,8 @@ function App() {
             <Route path="/work/projects/ServicesApp" element={<ServicesApp />} />
             <Route path="/work/projects/Chatapp" element={<Chatapp />} />
             <Route path="/work/projects/Toyzer" element={<Toyzer />} />
+            <Route path="/work/projects/Omar" element={<Omar />} />
+            <Route path="/work/projects/AdminDashboard" element={<AdminDashboard />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/media" element={<Media />} />
           </Routes>

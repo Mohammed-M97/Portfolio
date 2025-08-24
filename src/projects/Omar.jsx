@@ -1,19 +1,16 @@
 import { useState } from 'react'
-import websitePage1 from '../assets/projects/websitePage1.png';
-import websitePage2 from '../assets/projects/websitePage2.png';
-import websitePage5 from '../assets/projects/websitePage5.png';
-import websitePage6 from '../assets/projects/websitePage6.png';
+import omar00 from '../assets/projects/PicsOfProject/omar00.png'
+import omar01 from '../assets/projects/PicsOfProject/omar01.png'
+import omar02 from '../assets/projects/PicsOfProject/omar02.png'
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
-import { SiMongodb, SiTailwindcss } from 'react-icons/si'
-import { FaNodeJs, FaReact } from "react-icons/fa";
+import { FaBootstrap, FaReact, FaSass } from "react-icons/fa";
 
-function Toyzer() {
+function Omar() {
     const slides = [
-        { url: websitePage1 },
-        { url: websitePage2 },
-        { url: websitePage5 },
-        { url: websitePage6 },
+        { url: omar00 },
+        { url: omar01 },
+        { url: omar02 },
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,7 +39,7 @@ function Toyzer() {
         setImageLoading(false);
     };
     return (
-        <div name='Toyzer' className='w-full h-[1350px] background'>
+        <div name='Omar' className='w-full h-[1350px] background'>
             {/* Container */}
 
             <div className='max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 group'>
@@ -105,11 +102,11 @@ function Toyzer() {
             </div>
             <div className='max-w-[1000px] mx-auto px-8 flex flex-col justify-center'>
                 <p className='nameText mx-auto font-bold border-b-4 mt-8 border-pink-600 ml-1'>
-                    Toyzer
+                    Lawyer Omar Ali John
                 </p>
-                <h2 className='text-4xl sm:text-6xl font-bold textcolor'>Toyzer is an e-commerce website</h2>
+                <h2 className='text-4xl sm:text-6xl font-bold textcolor'>Omar </h2>
                 <p className='textcolor text-1xl sm:text-2xl py-4 max-w-[700px]'>
-                    Toyzer Store is an e-commerce website specializing in toys and related products. It provides a platform for users to browse, purchase, and manage their favorite toys. The website is built using React for the frontend and Node.js with Express for the backend, with a MongoDB database.
+                    Omar is a professional lawyer with expertise in various legal fields. He provides legal advice, represents clients in court, and helps them navigate complex legal issues. With a strong commitment to justice and a passion for helping others, Omar is dedicated to achieving the best possible outcomes for his clients.
                 </p>
                 <h3 className='nameText font-bold mb-4'>
                     Tools :
@@ -117,22 +114,19 @@ function Toyzer() {
                         <FaReact size={'30px'} />
                     </span>
                     <span className='mx-4' style={{ display: 'inline-flex' }}>
-                        <SiTailwindcss size={'35px'} />
+                        <FaBootstrap size={'35px'} />
                     </span>
                     <span className='mx-4' style={{ display: 'inline-flex' }}>
-                        <FaNodeJs size={'30px'} />
-                    </span>
-                    <span className='mx-4' style={{ display: 'inline-flex' }}>
-                        <SiMongodb size={'30px'} />
+                        <FaSass size={'30px'} />
                     </span>
                 </h3>
                 <div>
-                    <a href="https://toyzer-store.onrender.com/" target="__blank">
+                    <a href="https://zippy-swan-9b0623.netlify.app/#header/" target="__blank">
                         <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg '>
                             View Work
                         </button>
                     </a>
-                    <a href="https://github.com/Mohammed-M97/toyzer-store" target="__blank">
+                    <a href="https://github.com/Mohammed-M97/lawyer-omar-portfolio" target="__blank">
                         <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg '>
                             View Code
                         </button>
@@ -143,4 +137,4 @@ function Toyzer() {
     );
 }
 
-export default Toyzer;
+export default Omar;
