@@ -126,7 +126,7 @@ function AdminDashboard() {
                 <div>
                     <a href="https://sage-kangaroo-d5f862.netlify.app/" target="__blank">
                         <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg '>
-                            View Work
+                            Live Demo
                         </button>
                     </a>
                     <a href="https://github.com/Mohammed-M97/admin-dashboard" target="__blank">

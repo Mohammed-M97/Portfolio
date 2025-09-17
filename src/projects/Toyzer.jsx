@@ -129,7 +129,7 @@ function Toyzer() {
                 <div>
                     <a href="https://toyzer-store.onrender.com/" target="__blank">
                         <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg '>
-                            View Work
+                            Live Demo
                         </button>
                     </a>
                     <a href="https://github.com/Mohammed-M97/toyzer-store" target="__blank">
