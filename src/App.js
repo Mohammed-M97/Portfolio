@@ -27,6 +27,8 @@ function App() {
     <ErrorBoundary>
       <div>
         <Navbar/>
+        {/* Leave room for the fixed social bar on large screens */}
+        <main className="lg:pl-[60px]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -36,6 +38,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/media" element={<Media />} />
         </Routes>
+        </main>
       </div>
     </ErrorBoundary>
   );

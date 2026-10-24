@@ -1,8 +1,7 @@
 import {useState, useEffect} from 'react'
-import {FaBars, FaTimes, FaGithub, FaLinkedin} from 'react-icons/fa'
-import {BsFillPersonLinesFill} from 'react-icons/bs'
-import {HiOutlineMail} from 'react-icons/hi'
+import {FaBars, FaTimes} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { socials } from '../data/socials'
 
 
 function Navbar() {
@@ -87,31 +86,26 @@ function Navbar() {
             {' '}
             <Link onClick={handleClick} to="/contact">Contact</Link>
             </li>
+            <li className='flex gap-4 pt-8'>
+                {socials.map(({ name, url, icon: Icon, color }) => (
+                    <a key={name} target='_blank' rel='noreferrer' href={url} aria-label={name}
+                       className={`w-12 h-12 rounded-full flex items-center justify-center text-white ${color}`}>
+                        <Icon size={'22px'} />
+                    </a>
+                ))}
+            </li>
       </ul>
 
-        {/* Social icona */}
+        {/* Social icons (desktop) */}
         <div className='hidden lg:flex fixed flex-col top-[35%] left-0'>
             <ul>
-                <li className='w-[140px] h-[60px] flex justify-between items-center ml-[-80px] hover:ml-[-10px] duration-300 bg-blue-600'>
-                    <a target="__blank" className='flex justify-between w-full text-gray-300' href="https://www.linkedin.com/in/mohammed-alawlaqi/">
-                        LinkedIn <FaLinkedin size={'30px'} />
-                    </a>
-                </li>
-                <li className='w-[140px] h-[60px] flex justify-between items-center ml-[-80px] hover:ml-[-10px] duration-300 bg-[#333333]'>
-                    <a target="__blank" className='flex justify-between w-full text-gray-300' href="https://github.com/Mohammed-M97">
-                        Github <FaGithub size={'30px'} />
-                    </a>
-                </li>
-                <li className='w-[130px] h-[60px] flex justify-between items-center ml-[-70px] hover:ml-[-10px] duration-300 bg-[#6fc2b0]'>
-                    <a target="__blank" className='flex justify-between w-full text-gray-300' href="mailto:mohammed-alawlaqi@outlook.com">
-                        Email <HiOutlineMail size={'30px'} />
-                    </a>
-                </li>
-                <li className='w-[140px] h-[60px] flex justify-between items-center ml-[-80px] hover:ml-[-10px] duration-300 bg-[#565f69]'>
-                    <a target="__blank" className='flex justify-between w-full text-gray-300' href="https://drive.google.com/file/d/1PtpVU32hROqPcDeYiTwICbvZbUtHO6Im/view?usp=sharing">
-                        Resume <BsFillPersonLinesFill size={'30px'} />
-                    </a>
-                </li>
+                {socials.map(({ name, url, icon: Icon, color }) => (
+                    <li key={name} className={`w-[140px] h-[60px] flex justify-between items-center ml-[-80px] hover:ml-[-10px] duration-300 ${color}`}>
+                        <a target='_blank' rel='noreferrer' className='flex justify-between w-full text-gray-300' href={url}>
+                            {name} <Icon size={'30px'} />
+                        </a>
+                    </li>
+                ))}
             </ul>
         </div>
     </div>
