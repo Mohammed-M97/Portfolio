@@ -112,7 +112,14 @@ function ProjectPage() {
                 {project.code && (
                     <a href={project.code} target='_blank' rel='noreferrer'>
                         <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg'>
-                            View Code
+                            {project.api ? 'Frontend Code' : 'View Code'}
+                        </button>
+                    </a>
+                )}
+                {project.api && (
+                    <a href={project.api} target='_blank' rel='noreferrer'>
+                        <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg'>
+                            API Code
                         </button>
                     </a>
                 )}

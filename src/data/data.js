@@ -1,6 +1,8 @@
 import { FaBootstrap, FaNodeJs, FaReact, FaSass } from 'react-icons/fa'
-import { SiBootstrap, SiHtml5, SiJavascript, SiMongodb, SiMysql, SiPhp, SiTailwindcss, SiTypescript } from 'react-icons/si'
+import { SiBootstrap, SiExpress, SiHtml5, SiJavascript, SiJsonwebtokens, SiMongodb, SiMysql, SiPhp, SiTailwindcss, SiTypescript, SiVite } from 'react-icons/si'
 
+import momentum01 from '../assets/projects/momentum/01.webp'
+import momentum02 from '../assets/projects/momentum/02.webp'
 import toyzer01 from '../assets/projects/toyzer/01.webp'
 import toyzer02 from '../assets/projects/toyzer/02.webp'
 import toyzer03 from '../assets/projects/toyzer/03.webp'
@@ -29,6 +31,9 @@ import chat03 from '../assets/projects/chat-app/03.webp'
 // Tools shown on project pages
 const tools = {
     react: { name: 'React', icon: FaReact },
+    vite: { name: 'Vite', icon: SiVite },
+    express: { name: 'Express', icon: SiExpress },
+    jwt: { name: 'JWT', icon: SiJsonwebtokens },
     tailwind: { name: 'Tailwind CSS', icon: SiTailwindcss },
     node: { name: 'Node.js', icon: FaNodeJs },
     mongodb: { name: 'MongoDB', icon: SiMongodb },
@@ -43,7 +48,21 @@ const tools = {
 
 // Each project gets a page at /work/projects/:slug
 // `image` is the card cover on the Work page, `slides` is the gallery on the project page
+// `code` links the main repo; `api` is an optional second repo for the backend
 export const data = [
+    {
+        id: 7,
+        slug: 'Momentum',
+        name: 'Momentum',
+        title: 'Momentum is a personal planner',
+        description: 'Momentum is a personal planner for tasks, goals, weekly stats and a roadmap board. Goals track progress from their linked tasks, and the weekly view compares this week with the last ones. The frontend is built with React and Vite, backed by a REST API in Express and MongoDB with JWT sign-in, per-user data and soft deletes. Try the live demo with no sign-up: it opens a temporary account filled with sample data.',
+        image: momentum01,
+        slides: [momentum01, momentum02],
+        tools: [tools.react, tools.vite, tools.node, tools.express, tools.mongodb, tools.jwt],
+        demo: 'https://momentum.mohammed-alawlaqi.com/?demo',
+        code: 'https://github.com/Mohammed-M97/momentum-app',
+        api: 'https://github.com/Mohammed-M97/momentum-api',
+    },
     {
         id: 1,
         slug: 'Toyzer',
