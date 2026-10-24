@@ -24,7 +24,7 @@ function Navbar() {
     const handleClick = () => setNav(!nav)
 
   return (
-    <div className='fixed w-full h-[80px] flex justify-between items-center px-4 background textmain'>
+    <div className='fixed z-20 w-full h-[80px] flex justify-between items-center px-4 background textmain'>
             <div>
                 <Link to="/">
                 <img className='sizeImg img' alt="Mohammed Alawlaqi Portfolio Logo" />

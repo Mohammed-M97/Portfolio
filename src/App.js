@@ -1,4 +1,5 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ErrorBoundary from "./components/ErrorBoundary";
 
@@ -9,14 +10,15 @@ import Skills from "./components/Skills";
 import Work from "./components/Work";
 import Contact from "./components/Contact";
 import Media from "./components/Media";
-import Spark from "./projects/Spark";
-import ServicesApp from "./projects/ServicesApp";
-import Chatapp from "./projects/Chatapp";
-import Toyzer from "./projects/Toyzer";
-import Omar from "./projects/Omar";
-import AdminDashboard from "./projects/AdminDashboard";
+import ProjectPage from "./projects/ProjectPage";
 
 function App() {
+  const { pathname } = useLocation();
+
+  // Start each page from the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   window.onbeforeunload = function () {
       window.scrollTo(0, 0);
@@ -30,12 +32,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/work" element={<Work />} />
-          <Route path="/work/projects/Spark" element={<Spark />} />
-          <Route path="/work/projects/ServicesApp" element={<ServicesApp />} />
-          <Route path="/work/projects/Chatapp" element={<Chatapp />} />
-          <Route path="/work/projects/Toyzer" element={<Toyzer />} />
-          <Route path="/work/projects/Omar" element={<Omar />} />
-          <Route path="/work/projects/AdminDashboard" element={<AdminDashboard />} />
+          <Route path="/work/projects/:slug" element={<ProjectPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/media" element={<Media />} />
         </Routes>
