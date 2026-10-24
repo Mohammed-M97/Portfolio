@@ -80,7 +80,7 @@ function Navbar() {
             </li>
             <li className='py-6 text-4xl'>
             {' '}
-            <Link onClick={handleClick} to="/media">Media</Link>
+            <Link onClick={handleClick} to="/social">Social</Link>
             </li>
             <li className='py-6 text-4xl'>
             {' '}
