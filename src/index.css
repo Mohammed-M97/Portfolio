@@ -82,8 +82,12 @@ body {
     color: var(--textcolor)
 }
 
+/* The logo file is square with empty space around the text: crop it to the
+   navbar height so its link doesn't spill over the page below */
 .sizeImg {
     width: 230px;
+    height: 80px;
+    object-fit: cover;
     padding-top: 30px;
     cursor: pointer;
 }
