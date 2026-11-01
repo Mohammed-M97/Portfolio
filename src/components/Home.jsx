@@ -1,4 +1,4 @@
-
+import { socials } from '../data/socials'
 
 function Home() {
   return (
@@ -14,7 +14,15 @@ function Home() {
           designing) exceptional digital experiences. Currently, I’m focused on
           building responsive full-stack web applications.
         </p>
-        {/* <FontAwesomeIcon icon="fa-solid fa-toggle-on" /> */}
+        {/* Social links (the side bar covers large screens) */}
+        <div className='flex gap-4 pt-2 lg:hidden'>
+          {socials.map(({ name, url, icon: Icon, color }) => (
+            <a key={name} target='_blank' rel='noreferrer' href={url} aria-label={name} title={name}
+               className={`w-12 h-12 rounded-full flex items-center justify-center text-white ${color}`}>
+              <Icon size={'22px'} />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   )
