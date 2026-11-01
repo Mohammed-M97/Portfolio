@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
+import { IoClose } from 'react-icons/io5';
 import { data } from '../data/data.js'
 
 function ProjectPage() {
@@ -10,6 +11,24 @@ function ProjectPage() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [imageLoading, setImageLoading] = useState(true);
+    const [viewerOpen, setViewerOpen] = useState(false);
+    const [zoomed, setZoomed] = useState(false);
+
+    // Viewer: Esc closes, arrow keys move between images, page doesn't scroll behind it
+    useEffect(() => {
+        if (!viewerOpen) return;
+        const onKey = (e) => {
+            if (e.key === 'Escape') setViewerOpen(false);
+            if (e.key === 'ArrowLeft') document.getElementById('viewer-prev')?.click();
+            if (e.key === 'ArrowRight') document.getElementById('viewer-next')?.click();
+        };
+        document.addEventListener('keydown', onKey);
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.removeEventListener('keydown', onKey);
+            document.body.style.overflow = '';
+        };
+    }, [viewerOpen]);
 
     if (!project) {
         return <Navigate to='/work' replace />
@@ -21,6 +40,12 @@ function ProjectPage() {
         if (slideIndex === currentIndex) return;
         setCurrentIndex(slideIndex);
         setImageLoading(true);
+        setZoomed(false);
+    };
+
+    const openViewer = () => {
+        setZoomed(false);
+        setViewerOpen(true);
     };
 
     const prevSlide = () => goToSlide(currentIndex === 0 ? slides.length - 1 : currentIndex - 1);
@@ -40,8 +65,9 @@ function ProjectPage() {
                     key={slides[currentIndex]}
                     src={slides[currentIndex]}
                     alt={`${project.name} project screenshot ${currentIndex + 1}`}
-                    className={`w-full h-full object-contain duration-500 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
+                    className={`w-full h-full object-contain duration-500 cursor-zoom-in ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
                     onLoad={() => setImageLoading(false)}
+                    onClick={openViewer}
                 />
 
                 {slides.length > 1 && (
@@ -125,6 +151,44 @@ function ProjectPage() {
                 )}
             </div>
         </div>
+        {/* Full screen viewer: tap the image to zoom in, then scroll around it */}
+        {viewerOpen && (
+            <div
+                className='fixed inset-0 z-50 bg-black flex flex-col'
+                role='dialog'
+                aria-modal='true'
+                aria-label={`${project.name} screenshots`}
+            >
+                <div className='flex items-center justify-between px-4 h-14 shrink-0 text-white'>
+                    <span className='text-sm opacity-80'>
+                        {currentIndex + 1} / {slides.length} · {zoomed ? 'Tap to fit' : 'Tap to zoom'}
+                    </span>
+                    <button onClick={() => setViewerOpen(false)} aria-label='Close' className='p-2'>
+                        <IoClose size={30} />
+                    </button>
+                </div>
+                <div className={`relative flex-1 ${zoomed ? 'overflow-auto' : 'overflow-hidden flex items-center justify-center'}`}>
+                    <img
+                        src={slides[currentIndex]}
+                        alt={`${project.name} project screenshot ${currentIndex + 1}`}
+                        onClick={() => setZoomed(!zoomed)}
+                        className={zoomed
+                            ? 'max-w-none w-[250%] md:w-auto cursor-zoom-out'
+                            : 'max-w-full max-h-full object-contain cursor-zoom-in'}
+                    />
+                </div>
+                {slides.length > 1 && (
+                    <div className='flex items-center justify-center gap-8 h-16 shrink-0 text-white'>
+                        <button id='viewer-prev' onClick={prevSlide} aria-label='Previous image' className='p-2 rounded-full bg-white/10'>
+                            <BsChevronCompactLeft size={30} />
+                        </button>
+                        <button id='viewer-next' onClick={nextSlide} aria-label='Next image' className='p-2 rounded-full bg-white/10'>
+                            <BsChevronCompactRight size={30} />
+                        </button>
+                    </div>
+                )}
+            </div>
+        )}
     </div>
   )
 }
