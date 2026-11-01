@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
@@ -13,6 +13,7 @@ function ProjectPage() {
     const [imageLoading, setImageLoading] = useState(true);
     const [viewerOpen, setViewerOpen] = useState(false);
     const [zoomed, setZoomed] = useState(false);
+    const touchStart = useRef(null);
 
     // Viewer: Esc closes, arrow keys move between images, page doesn't scroll behind it
     useEffect(() => {
@@ -51,11 +52,29 @@ function ProjectPage() {
     const prevSlide = () => goToSlide(currentIndex === 0 ? slides.length - 1 : currentIndex - 1);
     const nextSlide = () => goToSlide(currentIndex === slides.length - 1 ? 0 : currentIndex + 1);
 
+    // Swipe left or right to change image (off while zoomed, so dragging scrolls the image)
+    const swipeHandlers = slides.length > 1 ? {
+        onTouchStart: (e) => {
+            const t = e.touches[0];
+            touchStart.current = { x: t.clientX, y: t.clientY };
+        },
+        onTouchEnd: (e) => {
+            const start = touchStart.current;
+            touchStart.current = null;
+            if (!start || zoomed) return;
+            const t = e.changedTouches[0];
+            const dx = t.clientX - start.x;
+            const dy = t.clientY - start.y;
+            if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+            if (dx < 0) nextSlide(); else prevSlide();
+        },
+    } : {};
+
   return (
     <div name={project.slug} className='w-full min-h-screen background pt-[96px] pb-16'>
         {/* Gallery */}
         <div className='max-w-[1200px] w-full mx-auto px-4 group'>
-            <div className='relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-[#112240]'>
+            <div className='relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-[#112240]' {...swipeHandlers}>
                 {imageLoading && (
                     <div className='absolute inset-0 flex items-center justify-center'>
                         <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-pink-600'></div>
@@ -167,24 +186,44 @@ function ProjectPage() {
                         <IoClose size={30} />
                     </button>
                 </div>
-                <div className={`relative flex-1 ${zoomed ? 'overflow-auto' : 'overflow-hidden flex items-center justify-center'}`}>
-                    <img
-                        src={slides[currentIndex]}
-                        alt={`${project.name} project screenshot ${currentIndex + 1}`}
-                        onClick={() => setZoomed(!zoomed)}
-                        className={zoomed
-                            ? 'max-w-none w-[250%] md:w-auto cursor-zoom-out'
-                            : 'max-w-full max-h-full object-contain cursor-zoom-in'}
-                    />
+                <div className='relative flex-1 min-h-0' {...swipeHandlers}>
+                    <div className={`absolute inset-0 ${zoomed ? 'overflow-auto' : 'overflow-hidden flex items-center justify-center'}`}>
+                        <img
+                            src={slides[currentIndex]}
+                            alt={`${project.name} project screenshot ${currentIndex + 1}`}
+                            onClick={() => setZoomed(!zoomed)}
+                            className={zoomed
+                                ? 'max-w-none w-[250%] md:w-auto cursor-zoom-out'
+                                : 'max-w-full max-h-full object-contain cursor-zoom-in'}
+                        />
+                    </div>
+                    {/* Arrows sit on the sides, clear of the badge Netlify puts in the bottom corner */}
+                    {slides.length > 1 && (
+                        <>
+                            <button id='viewer-prev' onClick={prevSlide} aria-label='Previous image'
+                                className='absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white'>
+                                <BsChevronCompactLeft size={30} />
+                            </button>
+                            <button id='viewer-next' onClick={nextSlide} aria-label='Next image'
+                                className='absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white'>
+                                <BsChevronCompactRight size={30} />
+                            </button>
+                        </>
+                    )}
                 </div>
+                {/* Dots, with room underneath for the badge */}
                 {slides.length > 1 && (
-                    <div className='flex items-center justify-center gap-8 h-16 shrink-0 text-white'>
-                        <button id='viewer-prev' onClick={prevSlide} aria-label='Previous image' className='p-2 rounded-full bg-white/10'>
-                            <BsChevronCompactLeft size={30} />
-                        </button>
-                        <button id='viewer-next' onClick={nextSlide} aria-label='Next image' className='p-2 rounded-full bg-white/10'>
-                            <BsChevronCompactRight size={30} />
-                        </button>
+                    <div className='flex justify-center pt-2 pb-24 shrink-0'>
+                        {slides.map((slide, slideIndex) => (
+                            <button
+                                key={slide}
+                                onClick={() => goToSlide(slideIndex)}
+                                className={`text-2xl ${slideIndex === currentIndex ? 'text-pink-600' : 'text-white/50'}`}
+                                aria-label={`Go to slide ${slideIndex + 1}`}
+                            >
+                                <RxDotFilled />
+                            </button>
+                        ))}
                     </div>
                 )}
             </div>
