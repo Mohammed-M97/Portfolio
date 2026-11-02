@@ -74,7 +74,7 @@ function ProjectPage() {
     <div name={project.slug} className='w-full min-h-screen background pt-[96px] pb-16'>
         {/* Gallery */}
         <div className='max-w-[1200px] w-full mx-auto px-4 group'>
-            <div className='relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-[#112240]' {...swipeHandlers}>
+            <div className='relative w-full aspect-[16/10] max-h-[60vh] rounded-2xl overflow-hidden bg-[#112240]' {...swipeHandlers}>
                 {imageLoading && (
                     <div className='absolute inset-0 flex items-center justify-center'>
                         <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-pink-600'></div>
@@ -135,40 +135,42 @@ function ProjectPage() {
                 {project.label || project.name}
             </p>
             <h2 className='text-4xl sm:text-6xl font-bold textcolor mt-2'>{project.title}</h2>
-            <p className='textcolor text-xl sm:text-2xl py-4 max-w-[700px]'>
-                {project.description}
-            </p>
-            <h3 className='nameText font-bold mb-4 flex flex-wrap items-center gap-y-2'>
-                Tools :
-                {project.tools.map(({ name, icon: Icon }) => (
-                    <span key={name} className='mx-4 inline-flex' title={name} aria-label={name}>
-                        <Icon size={'30px'} />
-                    </span>
-                ))}
-            </h3>
-            <div>
+            {/* Links come right under the title so they're seen without scrolling */}
+            <div className='mt-4'>
                 {project.demo && (
                     <a href={project.demo} target='_blank' rel='noreferrer'>
-                        <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg'>
+                        <button className='textmain group mr-2 sm:mr-4 border-2 px-3 sm:px-6 py-2 sm:py-3 my-2 text-sm sm:text-base buttonBg'>
                             Live Demo
                         </button>
                     </a>
                 )}
                 {project.code && (
                     <a href={project.code} target='_blank' rel='noreferrer'>
-                        <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg'>
+                        <button className='textmain group mr-2 sm:mr-4 border-2 px-3 sm:px-6 py-2 sm:py-3 my-2 text-sm sm:text-base buttonBg'>
                             {project.api ? 'Frontend Code' : 'View Code'}
                         </button>
                     </a>
                 )}
                 {project.api && (
                     <a href={project.api} target='_blank' rel='noreferrer'>
-                        <button className='textmain group mr-4 border-2 px-6 py-3 my-2 buttonBg'>
+                        <button className='textmain group mr-2 sm:mr-4 border-2 px-3 sm:px-6 py-2 sm:py-3 my-2 text-sm sm:text-base buttonBg'>
                             API Code
                         </button>
                     </a>
                 )}
             </div>
+            <p className='textcolor text-xl sm:text-2xl py-4 max-w-[700px]'>
+                {project.description}
+            </p>
+            <h3 className='nameText font-bold mb-2'>Tools</h3>
+            <ul className='flex flex-wrap gap-3'>
+                {project.tools.map(({ name, icon: Icon }) => (
+                    <li key={name} className='skillsShow !px-3 py-2 inline-flex items-center gap-2 !cursor-default'>
+                        <Icon size={'22px'} />
+                        <span>{name}</span>
+                    </li>
+                ))}
+            </ul>
         </div>
         {/* Full screen viewer: tap the image to zoom in, then scroll around it */}
         {viewerOpen && (
